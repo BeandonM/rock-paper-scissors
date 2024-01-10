@@ -18,14 +18,46 @@ function getPlayerPrompt()
 }
 function playRound(playerSelection, computerSelection)
 {
-/*
     let result = ""
+    console.log(playerSelection);
+    console.log(computerSelection);
     if(playerSelection == computerSelection)
     {
-        //Draw
-        result = "Ti"
+        result = "TIE"
+        return result
     }
-*/
+    switch(playerSelection)
+    {
+        case "rock":
+        {
+            if(computerSelection == "paper"){
+                result = "Computer Won"
+            }
+            else{
+                result = "You Won"
+            }
+            break;
+        }
+        case "paper":{
+            if(computerSelection == "scissors"){
+                result = "Computer Won"
+            }
+            else{
+                result = "You Won"
+            }
+            break;
+        };
+        case "scissors":{
+            if(computerSelection == "rock"){
+                result = "Computer Won"
+            }
+            else{
+                result = "You Won"
+            }
+            break;
+        }
+    }
+    return result
 }
 
-alert(getPlayerPrompt());
+console.log(playRound(getPlayerPrompt(),getComputerChoice()));

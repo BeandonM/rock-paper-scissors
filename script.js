@@ -18,12 +18,11 @@ function getPlayerPrompt()
 }
 function playRound(playerSelection, computerSelection)
 {
-    let result = ""
-    console.log(playerSelection);
-    console.log(computerSelection);
+    let result = 0
+    console.log("Player picked: " + playerSelection);
+    console.log("Computer picked: " + computerSelection);
     if(playerSelection == computerSelection)
     {
-        result = "TIE"
         return result
     }
     switch(playerSelection)
@@ -31,28 +30,28 @@ function playRound(playerSelection, computerSelection)
         case "rock":
         {
             if(computerSelection == "paper"){
-                result = "Computer Won"
+                result = -1
             }
             else{
-                result = "You Won"
+                result = 1
             }
             break;
         }
         case "paper":{
             if(computerSelection == "scissors"){
-                result = "Computer Won"
+                result = -1
             }
             else{
-                result = "You Won"
+                result = 1
             }
             break;
         };
         case "scissors":{
             if(computerSelection == "rock"){
-                result = "Computer Won"
+                result = -1
             }
             else{
-                result = "You Won"
+                result = 1
             }
             break;
         }
@@ -60,4 +59,44 @@ function playRound(playerSelection, computerSelection)
     return result
 }
 
-console.log(playRound(getPlayerPrompt(),getComputerChoice()));
+
+function game()
+{
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for(let i = 0; i < 5; i++)
+    {
+        result = playRound(getPlayerPrompt(),getComputerChoice());
+        switch(result){
+            case -1:
+            {
+                computerScore++;
+                console.log("Computer Won This Round");
+                break;
+            }
+            case 0:
+            {
+                i--;
+                console.log("Tie Breaker Replaying the Round")
+                break;
+            }
+            case 1:
+            {
+                playerScore++;
+                console.log("Player Won This Round");
+                break;
+            }
+        }
+    }
+
+    if(playerScore > computerScore)
+    {
+        console.log("Player Won the best of 5")
+    }
+    else
+    {
+        console.log("Computer Won the best of 5");
+    }
+}
+game();
